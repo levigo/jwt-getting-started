@@ -1,0 +1,1 @@
+Code-examples for the "Getting Started with Jadice Web Toolkit"-Tutorials. See https://levigo.de/info/display/JKB/Getting+Started+with+Jadice+Web+Toolkit

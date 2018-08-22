@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jwt-tutorial-001</artifactId>
+	<name>jwt-tutorial-001</name>
+	<description>Getting Started with Jadice Web Toolkit</description>
+	<url>https://levigo.de/info/display/JKB/Getting+Started+with+Jadice+Web+Toolkit</url>
+	<packaging>war</packaging>
+
+	<parent>
+		<artifactId>jwt-tutorial</artifactId>
+		<groupId>org.jwt</groupId>
+		<version>5.6.2.2</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!-- levigo -->
+		<jwt.version>5.6.2.2</jwt.version>
+
+		<!-- GWT -->
+		<gwt.version>2.8.2</gwt.version>
+		<gwtplugin.version>2.8.2</gwtplugin.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- JWT -->
+		<dependency>
+			<groupId>com.levigo.jadice.webtoolkit</groupId>
+			<artifactId>webtoolkit-base</artifactId>
+			<version>${jwt.version}</version>
+		</dependency>
+
+		<!-- General GWT dependencies -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<!-- Configure the maven-clean-plugin to delete GWT-temp files at cleanup -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>src/main</directory>
+									<includes>
+										<include>**</include>
+									</includes>
+									<excludes>
+										<exclude>java/**</exclude>
+										<exclude>resources/**</exclude>
+										<exclude>**/index.html</exclude>
+										<exclude>**/web.xml</exclude>
+										<exclude>**/.gitignore</exclude>
+									</excludes>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
