@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jwt</groupId>
 	<artifactId>jwt-tutorial</artifactId>
-	<version>5.6.2.2</version>
+	<version>5.7.0.0</version>
 	<name>jwt-tutorial</name>
 	<description>Getting Started with Jadice Web Toolkit</description>
 	<url>https://levigo.de/info/display/JKB/Getting+Started+with+Jadice+Web+Toolkit</url>
