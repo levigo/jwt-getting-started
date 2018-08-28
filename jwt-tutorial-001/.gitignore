@@ -35,5 +35,6 @@ release.properties
 .airtime
 
 **/MANIFEST.MF
+src/main/webapp/META-INF/maven/**
 src/main/webapp/WEB-INF/classes/**
 src/main/webapp/WEB-INF/lib/**
