@@ -4,7 +4,6 @@
 	<inherits name="com.google.gwt.user.User" />
 	
 	<inherits name="com.levigo.jadice.web.JadiceWebtoolkit" />
-	<inherits name="com.levigo.jadice.web.Transport" />
 
 	<!-- The locale configuration with en as default. -->
 	<extend-property name="locale" values="de,en" />
