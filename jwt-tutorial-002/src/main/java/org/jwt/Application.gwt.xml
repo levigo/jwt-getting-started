@@ -6,6 +6,10 @@
 	<inherits name="com.levigo.jadice.web.JadiceWebtoolkit" />
 	<inherits name="com.levigo.jadice.web.Transport" />
 
+	<!-- The locale configuration with en as default. -->
+	<extend-property name="locale" values="de,en" />
+	<set-property-fallback name="locale" value="en" />
+
 	<!-- Define all subpackages which sources are used in the client. In our case: org.jwt.client and org.jwt.shared -->
 	<source path="client" />
 	<source path="shared" />
