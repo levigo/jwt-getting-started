@@ -36,7 +36,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 
 		// finally load a testdocument
 		loadDocument("https://www.levigo.de/fileadmin/download/jadicewebtoolkit.pdf");
-		
+
 		GWT.log("jwt tutorial loaded");
 	}
 
