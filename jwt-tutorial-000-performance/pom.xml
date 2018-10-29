@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jwt-tutorial-000-performance</artifactId>
+	<name>jwt-tutorial-000-performance</name>
+	<description>Getting Started with Jadice Web Toolkit performancetest</description>
+	<url>https://levigo.de/info/display/JKB/Getting+Started+-+Performancetests+in+JWT</url>
+	<packaging>jar</packaging>
+
+	<parent>
+		<artifactId>jwt-tutorial</artifactId>
+		<groupId>org.jwt</groupId>
+		<version>5.7.0.2</version>
+	</parent>
+	<properties>
+		<gatling.version>2.3.1</gatling.version>
+		<gatling-plugin.version>2.2.4</gatling-plugin.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.gatling.highcharts</groupId>
+			<artifactId>gatling-charts-highcharts</artifactId>
+			<version>${gatling.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.gatling</groupId>
+				<artifactId>gatling-maven-plugin</artifactId>
+				<version>${gatling-plugin.version}</version>
+				<configuration>
+					<configFolder>${project.basedir}/src/test/resources</configFolder>
+					<dataFolder>${project.basedir}/src/test/resources/data</dataFolder>
+					<requestBodiesFolder>${project.basedir}/src/test/resources/bodies</requestBodiesFolder>
+					<simulationsFolder>${project.basedir}/src/test/scala</simulationsFolder>
+					<resultsFolder>${project.build.directory}/reports/gatling</resultsFolder>
+					<runMultipleSimulations>true</runMultipleSimulations>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
