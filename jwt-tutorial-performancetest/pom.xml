@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>jwt-tutorial-000-performance</artifactId>
-	<name>jwt-tutorial-000-performance</name>
+	<artifactId>jwt-tutorial-performancetest</artifactId>
+	<name>jwt-tutorial-performancetest</name>
 	<description>Getting Started with Jadice Web Toolkit performancetest</description>
 	<url>https://levigo.de/info/display/JKB/Getting+Started+-+Performancetests+in+JWT</url>
 	<packaging>jar</packaging>
