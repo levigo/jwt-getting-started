@@ -16,6 +16,7 @@
 		<module>jwt-tutorial-001</module>
 		<module>jwt-tutorial-002</module>
 		<module>jwt-tutorial-003</module>
+		<module>jwt-tutorial-performancetest</module>
 	</modules>
 
 </project>
