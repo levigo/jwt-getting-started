@@ -56,6 +56,27 @@
 
 	<build>
 		<plugins>
+
+			<!-- Configure the gwt-clean-plugin to generate a deployable war -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>resources</goal>
+							<goal>compile</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<failOnError>true</failOnError>
+					<inplace>true</inplace>
+				</configuration>
+			</plugin>
+
 			<!-- Configure the maven-clean-plugin to delete GWT-temp files at cleanup -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
