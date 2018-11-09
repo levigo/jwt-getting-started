@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>jwt-tutorial-001</artifactId>
-	<name>jwt-tutorial-001</name>
+	<artifactId>jwt-tutorial-004</artifactId>
+	<name>jwt-tutorial-004</name>
 	<description>Getting Started with Jadice Web Toolkit</description>
 	<url>https://levigo.de/info/display/JKB/Getting+Started+with+Jadice+Web+Toolkit</url>
 	<packaging>war</packaging>
