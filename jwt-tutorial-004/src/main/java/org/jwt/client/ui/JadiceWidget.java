@@ -6,8 +6,16 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.RequiresResize;
 import com.google.gwt.user.client.ui.Widget;
 import com.levigo.jadice.web.client.PageView;
+import com.levigo.jadice.web.client.ToolManager;
 import com.levigo.jadice.web.client.Viewer;
 import com.levigo.jadice.web.client.ViewerBuilder;
+import com.levigo.jadice.web.client.tool.DefaultToolActivationPolicy;
+import com.levigo.jadice.web.client.tools.HighlightTool;
+import com.levigo.jadice.web.client.tools.MouseWheelScrollTool;
+import com.levigo.jadice.web.client.tools.MouseWheelZoomTool;
+import com.levigo.jadice.web.client.tools.PanForceMouseTool;
+import com.levigo.jadice.web.client.tools.TextSelectionTool;
+import com.levigo.jadice.web.client.tools.ThumbnailTool;
 import com.levigo.jadice.web.client.ui.AbstractBar;
 import com.levigo.jadice.web.client.ui.DefaultActions;
 import com.levigo.jadice.web.client.ui.HorizontalToolbar;
@@ -32,7 +40,7 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 
 	private void init() {
 		viewer = createViewer();
-		
+
 		panel = new DockLayoutPanel(Unit.PX);
 		panel.setWidth("100%");
 		panel.setHeight("100%");
@@ -46,6 +54,8 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		panel.addNorth(toolbar, toolbar.getStyle().size());
 
 		panel.add(viewer);
+
+		configureToolManager();
 	}
 
 	private Viewer createViewer() {
@@ -63,6 +73,24 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		toolbar.add(new JadiceDefaultButton(DefaultActions.pageNextAction(new KeyStroke(Keys.RIGHT), context), false));
 
 		return toolbar;
+	}
+
+	private void configureToolManager() {
+		ToolManager tm = viewer.getPageView().getToolManager();
+
+		tm.register(PanForceMouseTool.class, true);
+
+		tm.register(MouseWheelScrollTool.class, true);
+		tm.register(MouseWheelZoomTool.class, true);
+
+		tm.register(ThumbnailTool.class, true);
+
+		tm.register(TextSelectionTool.class, true);
+		tm.register(HighlightTool.class, true);
+
+		// DefaultToolActivationPolicy automatically activates tools like the
+		// TextSelectionTool and PanForceMouseTool if another tool is deactivated
+		tm.setActivationPolicy(new DefaultToolActivationPolicy());
 	}
 
 	public PageView getPageView() {
