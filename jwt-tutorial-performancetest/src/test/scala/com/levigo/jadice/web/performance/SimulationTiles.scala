@@ -4,7 +4,7 @@ import io.gatling.http.Predef._
 
 class SimulationTiles extends Simulation {
   val httpProtocol = http
-    .baseURL("http://localhost:8080/jwt-tutorial-003-5.7.1.0")
+    .baseURL("http://localhost:8080/jwt-tutorial-003-5.8.0.0")
        
   val defaultHeader= Map(
     "Accept" -> "*/*",
@@ -16,10 +16,7 @@ class SimulationTiles extends Simulation {
     "DNT" -> "1",
     "Origin" -> "http://localhost:8080",
     "Pragma" -> "no-cache",
-    "User-Agent" -> "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36",
-    "X-GWT-Module-Base" -> "http://localhost:8080/jwt-tutorial-003-5.7.1.0/imageviewer/",
-    "X-GWT-Permutation" -> "79A1155DD3CB7EBBA33EE56F4B55FD77",
-    "X-JWT-Client-ID" ->"${uuid}")
+    "User-Agent" -> "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36")
      
     val scn = scenario("Tile retrieval Scenario")
     .exec(_.set("uuid", java.util.UUID.randomUUID))
@@ -57,6 +54,6 @@ class SimulationTiles extends Simulation {
     setUp(scn.inject(atOnceUsers(5)))
     .protocols(httpProtocol)
     .assertions(
-      global.responseTime.max.lte(2000)
+      global.responseTime.max.lte(10000)
     )
 }

@@ -51,7 +51,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 
 	/**
 	 * Loads the document referenced by the passed url.
-	 * 
+	 *
 	 * @param url
 	 */
 	private void loadDocument(final String url) {
