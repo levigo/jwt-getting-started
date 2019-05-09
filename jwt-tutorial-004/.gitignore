@@ -38,3 +38,4 @@ release.properties
 src/main/webapp/META-INF/maven/**
 src/main/webapp/WEB-INF/classes/**
 src/main/webapp/WEB-INF/lib/**
+src/main/webapp/WEB-INF/deploy/**

@@ -19,6 +19,6 @@ class SimulationSimple extends Simulation {
  
     .protocols(httpProtocol)
     .assertions(
-      global.responseTime.max.lte(2000)
+      global.responseTime.max.lte(10000)
     )
 }

@@ -42,7 +42,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 
 	private void initServerConnection() {
 		try {
-			new ServerConnectionBuilder().setServerSentEventsEnabled(false).setWebSocketEnabled(false).build();
+			new ServerConnectionBuilder().setWebSocketEnabled(false).build();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Window.alert("Error initializing server-connection.");
