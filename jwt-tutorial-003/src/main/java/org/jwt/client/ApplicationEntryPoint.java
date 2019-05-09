@@ -42,7 +42,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 
 	private void initServerConnection() {
 		try {
-			new ServerConnectionBuilder().setWebSocketEnabled(false).build();
+			new ServerConnectionBuilder().setServerSentEventsEnabled(false).setWebSocketEnabled(false).build();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Window.alert("Error initializing server-connection.");
@@ -51,7 +51,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 
 	/**
 	 * Loads the document referenced by the passed url.
-	 * 
+	 *
 	 * @param url
 	 */
 	private void loadDocument(final String url) {
