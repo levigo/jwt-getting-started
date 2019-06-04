@@ -12,5 +12,5 @@
 	<source path="client" />
 
 	<!-- The entry-point of the application -->
-	<entry-point class="org.jwt.client.ApplicationEntryPoint" />
+	<entry-point class="org.jwt.tutorial.spring.boot.client.ApplicationEntryPoint" />
 </module>
