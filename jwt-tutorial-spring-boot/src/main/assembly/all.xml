@@ -22,6 +22,7 @@
             <outputDirectory>public</outputDirectory>
             <includes>
                 <include>imageviewer/**</include>
+                <include>**/*.html</include>
             </includes>
         </fileSet>
         <fileSet>
