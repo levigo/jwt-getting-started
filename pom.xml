@@ -2,13 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jwt</groupId>
-	<artifactId>jwt-tutorial</artifactId>
-	<version>5.8.0.0</version>
-	<name>jwt-tutorial</name>
-	<description>Getting Started with Jadice Web Toolkit</description>
-	<url>https://levigo.de/info/display/JKB/Getting+Started+with+Jadice+Web+Toolkit</url>
+	<artifactId>jwt-getting-started</artifactId>
+	<version>5.8.2.0</version>
+	
+	<description>Getting Started - jadice web toolkit</description>
+	<url>https://levigo.de/info/x/54CaBQ</url>
+	
+	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -16,6 +17,8 @@
 		<module>jwt-tutorial-001</module>
 		<module>jwt-tutorial-002</module>
 		<module>jwt-tutorial-003</module>
+		<module>jwt-tutorial-004</module>
+		<module>jwt-tutorial-005</module>
 		<module>jwt-tutorial-performancetest</module>
 	</modules>
 
