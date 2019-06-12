@@ -12,11 +12,8 @@
 
     <includeBaseDirectory>false</includeBaseDirectory>
 
-    <!-- ~~~~~~~~~~~~~~ -->
-    <!-- Copy resources -->
-    <!-- ~~~~~~~~~~~~~~ -->
     <fileSets>
-        <!-- splash screen image -->
+    	<!-- Copy web resources to 'public' folder (the default folder for web-resources from spring boot) -->
         <fileSet>
             <directory>src/main/webapp</directory>
             <outputDirectory>public</outputDirectory>

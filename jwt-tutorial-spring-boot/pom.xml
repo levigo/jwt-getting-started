@@ -26,6 +26,11 @@
 		
 		<!-- GWT dependencies -->
 		<gwt.version>2.8.2</gwt.version>
+		
+		<!-- Docker image name -->
+		<docker.image.name>${project.artifactId}</docker.image.name>
+		<!-- A custom registry can be used by prepending the registry name like the following example -->
+<!-- 		<docker.image.name>registry.container.levigo.de:5000/${project.artifactId}</docker.image.name> -->
 	</properties>
 
 	<dependencies>
@@ -50,13 +55,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- Import Jadice Webtoolkit bill of material. JWT dependency versions will be managed via this BOM. -->
+			<!-- Let's import the Jadice Webtoolkit bill of material. JWT dependency versions will be managed via this BOM. -->
 			<dependency>
 				<groupId>com.levigo.jadice.webtoolkit</groupId>
 				<artifactId>webtoolkit-spring-boot-bom</artifactId>
@@ -69,6 +73,7 @@
 
 	<build>
 		<plugins>
+			<!--  We use the assembly plugin to copy the index.html to the 'public' folder -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -89,6 +94,8 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<!--  Use spring boot maven plugin to create an executable JAR with all dependencies -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -109,6 +116,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			
+			<!-- We use the gwt maven plugin to compile the client side javascript files from java sources -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
@@ -126,45 +135,16 @@
 					<inplace>true</inplace>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.4.1</version>
-				<executions>
-					<execution>
-						<phase>clean</phase>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-						<configuration>
-							<filesets>
-								<fileset>
-									<directory>src/main</directory>
-									<includes>
-										<include>**</include>
-										<include>**/gen/**</include>
-									</includes>
-									<excludes>
-										<exclude>assembly/**</exclude>
-										<exclude>docker/**</exclude>
-										<exclude>**/.gitignore</exclude>
-										<exclude>java/**</exclude>
-										<exclude>**/resources/**</exclude>
-										<exclude>**/*.html</exclude>
-									</excludes>
-									<followSymlinks>false</followSymlinks>
-								</fileset>
-							</filesets>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- See plugin docs for info on creating the docker container: https://github.com/spotify/docker-maven-plugin 
-				Examples taken from the docs: mvn clean package docker:build mvn clean package 
-				docker:build -DpushImage To run it locally: docker run -p 8080:8080 registry.container.levigo.de:5000/allianz-jwt -->
+			
+			<!-- We use the spotify docker plugin to create a docker image for the application. The src/main/docker/Dockerfile 
+				contains the instructions to build the image. -->
+			<!-- See plugin docs for info on creating the docker container: https://github.com/spotify/docker-maven-plugin -->
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.2.0</version>
+				<!-- The executions are disabled at the moment. To always create the image in the 'package' phase, for example,
+					the following lines can be used -->
 				<!-- <executions> -->
 				<!-- <execution> -->
 				<!-- <id>build-image</id> -->
@@ -175,8 +155,7 @@
 				<!-- </execution> -->
 				<!-- </executions> -->
 				<configuration>
-<!-- 					<imageName>registry.container.levigo.de:5000/${project.artifactId}</imageName> -->
-					<imageName>${project.artifactId}</imageName>
+					<imageName>${docker.image.name}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
@@ -190,6 +169,31 @@
 					</imageTags>
 					<forceTags>true</forceTags>
 				</configuration>
+			</plugin>
+			
+			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder which is created by the gwt compiler -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>src/main/gwt-unitCache</directory>
+									<includes>
+										<include>**</include>
+									</includes>
+									<followSymlinks>false</followSymlinks>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
