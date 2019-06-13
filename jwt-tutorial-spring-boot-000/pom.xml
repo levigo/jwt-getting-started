@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>jwt-tutorial-spring-boot</artifactId>
+	<artifactId>jwt-tutorial-spring-boot-000</artifactId>
 	<name>jwt-tutorial-spring-boot</name>
 	<url>http://maven.apache.org</url>
 
@@ -18,35 +18,25 @@
 		<!-- General project settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
-    	<maven.compiler.target>1.8</maven.compiler.target>
-    	
-    	<!-- levigo dependencies -->
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!-- levigo dependencies -->
 		<jwt.version>5.8.1.0</jwt.version>
 		<spring.boot.version>2.1.5.RELEASE</spring.boot.version>
-		
+
 		<!-- GWT dependencies -->
 		<gwt.version>2.8.2</gwt.version>
-		
-		<!-- Docker image name -->
-		<docker.image.name>${project.artifactId}</docker.image.name>
-		<!-- A custom registry can be used by prepending the registry name like the following example -->
-<!-- 		<docker.image.name>registry.container.levigo.de:5000/${project.artifactId}</docker.image.name> -->
 	</properties>
 
 	<dependencies>
 		<!-- Dependency versions are managed by parent / imported BOMs -->
-		
-		<dependency>
-			<groupId>com.levigo.jadice.webtoolkit</groupId>
-			<artifactId>webtoolkit-base</artifactId>
-		</dependency>
 
 		<!-- JWT via Spring-Boot Starter + DevTools -->
 		<dependency>
 			<groupId>com.levigo.jadice.webtoolkit</groupId>
 			<artifactId>webtoolkit-spring-boot-starter</artifactId>
 		</dependency>
-		
+
 		<!-- Required for SuperDev mode -->
 		<dependency>
 			<groupId>com.levigo.jadice.webtoolkit</groupId>
@@ -60,7 +50,8 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- Let's import the Jadice Webtoolkit bill of material. JWT dependency versions will be managed via this BOM. -->
+			<!-- Let's import the Jadice Webtoolkit bill of material. JWT dependency 
+				versions will be managed via this BOM. -->
 			<dependency>
 				<groupId>com.levigo.jadice.webtoolkit</groupId>
 				<artifactId>webtoolkit-spring-boot-bom</artifactId>
@@ -73,7 +64,8 @@
 
 	<build>
 		<plugins>
-			<!--  We use the assembly plugin to copy the index.html to the 'public' folder -->
+			<!-- We use the assembly plugin to copy the index.html to the 'public' 
+				folder -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -94,8 +86,9 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			<!--  Use spring boot maven plugin to create an executable JAR with all dependencies -->
+
+			<!-- Use spring boot maven plugin to create an executable JAR with all 
+				dependencies -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -116,8 +109,9 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			
-			<!-- We use the gwt maven plugin to compile the client side javascript files from java sources -->
+
+			<!-- We use the gwt maven plugin to compile the client side javascript 
+				files from java sources -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
@@ -135,25 +129,26 @@
 					<inplace>true</inplace>
 				</configuration>
 			</plugin>
-			
-			<!-- We use the spotify docker plugin to create a docker image for the application. The src/main/docker/Dockerfile 
-				contains the instructions to build the image. -->
+
+			<!-- We use the spotify docker plugin to create a docker image for the 
+				application. The src/main/docker/Dockerfile contains the instructions to 
+				build the image. -->
 			<!-- See plugin docs for info on creating the docker container: https://github.com/spotify/docker-maven-plugin -->
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.2.0</version>
-				<!-- The executions are disabled at the moment. To always create the image in the 'package' phase, for example,
-					the following lines can be used -->
-				<!-- <executions> -->
-				<!-- <execution> -->
-				<!-- <id>build-image</id> -->
-				<!-- <phase>package</phase> -->
-				<!-- <goals> -->
-				<!-- <goal>build</goal> -->
-				<!-- </goals> -->
-				<!-- </execution> -->
-				<!-- </executions> -->
+				<!-- The executions are disabled at the moment. To always create the 
+					image in the 'package' phase, for example, the following lines can be used -->
+<!-- 				<executions> -->
+<!-- 				<execution> -->
+<!-- 				<id>build-image</id> -->
+<!-- 				<phase>package</phase> -->
+<!-- 				<goals> -->
+<!-- 				<goal>build</goal> -->
+<!-- 				</goals> -->
+<!-- 				</execution> -->
+<!-- 				</executions> -->
 				<configuration>
 					<imageName>${docker.image.name}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
@@ -170,8 +165,9 @@
 					<forceTags>true</forceTags>
 				</configuration>
 			</plugin>
-			
-			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder which is created by the gwt compiler -->
+
+			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder 
+				which is created by the gwt compiler -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.4.1</version>
@@ -196,5 +192,55 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+		<!-- This section is only needed for Eclipse users to get rid of the errors 
+			in the POM regarding 'plugin execution not covered by lifecycle configuration' 
+			which is thrown by the M2E Plugin for no sensible reason. 
+			
+			When not using the Eclipse IDE, this section can be ignored -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>gwt-maven-plugin</artifactId>
+										<versionRange>[2.4.0,)</versionRange>
+										<goals>
+											<goal>resources</goal>
+											<goal>compile</goal>
+											<goal>i18n</goal>
+											<goal>generateAsync</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-war-plugin</artifactId>
+										<versionRange>[2.1.1,)</versionRange>
+										<goals>
+											<goal>exploded</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

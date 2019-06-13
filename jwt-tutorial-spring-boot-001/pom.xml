@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jwt-tutorial-spring-boot-001</artifactId>
+	<name>jwt-tutorial-spring-boot</name>
+	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>org.jwt</groupId>
+		<artifactId>jwt-tutorial</artifactId>
+		<version>5.8.1.0</version>
+	</parent>
+
+	<properties>
+		<!-- General project settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!-- levigo dependencies -->
+		<jwt.version>5.8.1.0</jwt.version>
+		<spring.boot.version>2.1.5.RELEASE</spring.boot.version>
+
+		<!-- GWT dependencies -->
+		<gwt.version>2.8.2</gwt.version>
+
+		<!-- Docker image name -->
+		<docker.image.name>${project.artifactId}</docker.image.name>
+		<!-- A custom registry can be used by prepending the registry name like 
+			the following example -->
+		<!-- <docker.image.name>registry.container.levigo.de:5000/${project.artifactId}</docker.image.name> -->
+	</properties>
+
+	<dependencies>
+		<!-- Dependency versions are managed by parent / imported BOMs -->
+
+		<!-- JWT via Spring-Boot Starter + DevTools -->
+		<dependency>
+			<groupId>com.levigo.jadice.webtoolkit</groupId>
+			<artifactId>webtoolkit-spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- Required for SuperDev mode -->
+		<dependency>
+			<groupId>com.levigo.jadice.webtoolkit</groupId>
+			<artifactId>webtoolkit-spring-boot-devmode</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Let's import the Jadice Webtoolkit bill of material. JWT dependency 
+				versions will be managed via this BOM. -->
+			<dependency>
+				<groupId>com.levigo.jadice.webtoolkit</groupId>
+				<artifactId>webtoolkit-spring-boot-bom</artifactId>
+				<version>${jwt.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<!-- We use the assembly plugin to copy the index.html to the 'public' 
+				folder -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>assemble</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/all.xml</descriptor>
+							</descriptors>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Use spring boot maven plugin to create an executable JAR with all 
+				dependencies -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.1.0.M4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>com.google.gwt</groupId>
+							<artifactId>gwt-user</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<!-- We use the gwt maven plugin to compile the client side javascript 
+				files from java sources -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>resources</goal>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<failOnError>true</failOnError>
+					<inplace>true</inplace>
+				</configuration>
+			</plugin>
+
+			<!-- We use the spotify docker plugin to create a docker image for the 
+				application. The src/main/docker/Dockerfile contains the instructions to 
+				build the image. -->
+			<!-- See plugin docs for info on creating the docker container: https://github.com/spotify/docker-maven-plugin -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.2.0</version>
+				<!-- The executions are disabled at the moment. To always create the 
+					image in the 'package' phase, for example, the following lines can be used -->
+<!-- 				<executions> -->
+<!-- 				<execution> -->
+<!-- 				<id>build-image</id> -->
+<!-- 				<phase>package</phase> -->
+<!-- 				<goals> -->
+<!-- 				<goal>build</goal> -->
+<!-- 				</goals> -->
+<!-- 				</execution> -->
+<!-- 				</executions> -->
+				<configuration>
+					<imageName>${docker.image.name}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.${project.packaging}</include>
+						</resource>
+					</resources>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+					</imageTags>
+					<forceTags>true</forceTags>
+				</configuration>
+			</plugin>
+
+			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder 
+				which is created by the gwt compiler -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>src/main/gwt-unitCache</directory>
+									<includes>
+										<include>**</include>
+									</includes>
+									<followSymlinks>false</followSymlinks>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
