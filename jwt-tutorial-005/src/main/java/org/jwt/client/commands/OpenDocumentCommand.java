@@ -3,14 +3,12 @@ package org.jwt.client.commands;
 import org.jwt.client.api.JadiceApi;
 import org.jwt.client.ui.resources.CustomMessages;
 
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 import com.levigo.jadice.web.client.commands.AbstractContextCommand;
 import com.levigo.jadice.web.client.util.command.Argument;
 
@@ -38,15 +36,15 @@ public class OpenDocumentCommand extends AbstractContextCommand {
 	}
 
 	private PopupPanel createOpenDocumentDialog() {
-
 		VerticalPanel panel = new VerticalPanel();
 
 		Label label = new Label(CustomMessages.INSTANCE.openDocument_dialog_label());
-		label.setSize("100%", "100%");
 		panel.add(label);
 
 		TextBox inputBox = new TextBox();
-		inputBox.setSize("100%", "100%");
+		inputBox.getElement().getStyle().setMarginTop(5, Unit.PX);
+		inputBox.getElement().getStyle().setMarginBottom(5, Unit.PX);
+		inputBox.setSize("400px", "100%");
 		panel.add(inputBox);
 
 		Button okButton = new Button(CustomMessages.INSTANCE.openDocument_dialog_ok());
@@ -58,17 +56,9 @@ public class OpenDocumentCommand extends AbstractContextCommand {
 		PopupPanel dialog = new PopupPanel();
 		dialog.setPopupPosition(100, 100);
 		dialog.setWidget(panel);
-
-		styleDialog(dialog);
+		dialog.getElement().getStyle().setZIndex(5);
 
 		return dialog;
-	}
-
-	private void styleDialog(Widget dialog) {
-		Style style = dialog.getElement().getStyle();
-		style.setZIndex(5);
-		style.setPadding(10, Unit.PX);
-		style.setBackgroundColor("white");
 	}
 
 	private void openUrl(PopupPanel dialog, TextBox inputBox) {
