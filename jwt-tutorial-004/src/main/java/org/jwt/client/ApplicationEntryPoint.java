@@ -40,6 +40,10 @@ public class ApplicationEntryPoint implements EntryPoint {
 		GWT.log("jwt tutorial loaded");
 	}
 
+	/**
+	 * For the tutorial we deactivate websocket communication as not supported by
+	 * jetty.
+	 */
 	private void initServerConnection() {
 		try {
 			new ServerConnectionBuilder().setWebSocketEnabled(false).build();
