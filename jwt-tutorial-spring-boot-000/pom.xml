@@ -130,42 +130,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- We use the spotify docker plugin to create a docker image for the 
-				application. The src/main/docker/Dockerfile contains the instructions to 
-				build the image. -->
-			<!-- See plugin docs for info on creating the docker container: https://github.com/spotify/docker-maven-plugin -->
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.2.0</version>
-				<!-- The executions are disabled at the moment. To always create the 
-					image in the 'package' phase, for example, the following lines can be used -->
-<!-- 				<executions> -->
-<!-- 				<execution> -->
-<!-- 				<id>build-image</id> -->
-<!-- 				<phase>package</phase> -->
-<!-- 				<goals> -->
-<!-- 				<goal>build</goal> -->
-<!-- 				</goals> -->
-<!-- 				</execution> -->
-<!-- 				</executions> -->
-				<configuration>
-					<imageName>${docker.image.name}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.${project.packaging}</include>
-						</resource>
-					</resources>
-					<imageTags>
-						<imageTag>${project.version}</imageTag>
-					</imageTags>
-					<forceTags>true</forceTags>
-				</configuration>
-			</plugin>
-
 			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder 
 				which is created by the gwt compiler -->
 			<plugin>

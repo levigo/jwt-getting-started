@@ -66,8 +66,6 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		tm.register(TextSelectionTool.class, true);
 		tm.register(HighlightTool.class, true);
 
-		// DefaultToolActivationPolicy automatically activates tools like the
-		// TextSelectionTool and PanForceMouseTool if another tool is deactivated
 		tm.setActivationPolicy(new DefaultToolActivationPolicy());
 	}
 
