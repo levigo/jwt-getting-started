@@ -21,6 +21,7 @@
 
 	<!-- Define all subpackages which sources are used in the client. In our case: org.jwt.client -->
 	<source path="client" />
+	<source path="shared" />
 
 	<!-- The entry-point of the application -->
 	<entry-point class="org.jwt.client.ApplicationEntryPoint" />

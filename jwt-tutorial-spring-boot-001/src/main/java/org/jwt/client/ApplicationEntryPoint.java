@@ -3,11 +3,15 @@ package org.jwt.client;
 import java.io.IOException;
 
 import org.jwt.client.ui.JadiceWidget;
+import org.jwt.shared.model.UrlSource;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.levigo.jadice.document.Document;
+import com.levigo.jadice.web.client.reader.Reader;
 import com.levigo.jadice.web.conn.client.ServerConnectionBuilder;
 
 public class ApplicationEntryPoint implements EntryPoint {
@@ -24,7 +28,26 @@ public class ApplicationEntryPoint implements EntryPoint {
     rootPanel.add(jadiceWidget);
 
     GWT.log("jwt tutorial loaded");
+    
+    // Finally, load a test document:
+    loadDocument("https://www.levigo.de/fileadmin/download/jadicewebtoolkit.pdf");
   }
+  
+  private void loadDocument(String docURI) {
+		Reader r = new Reader();
+		r.append(new UrlSource(docURI));
+		r.complete(new AsyncCallback<Document>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				caught.printStackTrace();
+			}
+
+			@Override
+			public void onSuccess(Document result) {
+				jadiceWidget.getPageView().setDocument(result);
+			}
+		});
+	}
 
   /**
    * For the tutorial we deactivate websocket communication as not supported by

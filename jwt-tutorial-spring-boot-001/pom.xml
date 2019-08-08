@@ -22,7 +22,6 @@
 
 		<!-- levigo dependencies -->
 		<jwt.version>5.8.1.0</jwt.version>
-		<spring.boot.version>2.1.5.RELEASE</spring.boot.version>
 
 		<!-- GWT dependencies -->
 		<gwt.version>2.8.2</gwt.version>
@@ -144,17 +143,15 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.2.0</version>
-				<!-- The executions are disabled at the moment. To always create the 
-					image in the 'package' phase, for example, the following lines can be used -->
-<!-- 				<executions> -->
-<!-- 				<execution> -->
-<!-- 				<id>build-image</id> -->
-<!-- 				<phase>package</phase> -->
-<!-- 				<goals> -->
-<!-- 				<goal>build</goal> -->
-<!-- 				</goals> -->
-<!-- 				</execution> -->
-<!-- 				</executions> -->
+				<executions>
+					<execution>
+						<id>build-image</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<imageName>${docker.image.name}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
