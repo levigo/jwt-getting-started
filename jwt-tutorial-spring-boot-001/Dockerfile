@@ -10,8 +10,8 @@ RUN wget -O /tmp/documentplatform-standard14-fonts.tar.gz https://github.com/lev
         && tar -xzvf /tmp/documentplatform-standard14-fonts.tar.gz -C /usr/share/fonts --strip 8 documentplatform-standard14-fonts-documentplatform-standard14-fonts-2.3/src/main/resources/com/levigo/jadice/fonts \
         && fc-cache -f -v 
 
-ADD *.jar /app.war
-ENTRYPOINT java $JAVA_OPTIONS -Djavax.accessibility.assistive_technologies=" " -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom -jar /app.war
+ADD target/*.jar /app.jar
+ENTRYPOINT java $JAVA_OPTIONS -Djavax.accessibility.assistive_technologies=" " -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom -jar /app.jar
 
 VOLUME /tmp /config
 EXPOSE 8080

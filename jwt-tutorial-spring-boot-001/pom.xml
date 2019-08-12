@@ -31,6 +31,9 @@
 		<!-- A custom registry can be used by prepending the registry name like 
 			the following example -->
 		<!-- <docker.image.name>registry.container.levigo.de:5000/${project.artifactId}</docker.image.name> -->
+
+
+		<dockerfile-maven-plugin.version>1.4.9</dockerfile-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -43,10 +46,10 @@
 		</dependency>
 
 		<!-- Required for SuperDev mode -->
-		<dependency>
-			<groupId>com.levigo.jadice.webtoolkit</groupId>
-			<artifactId>webtoolkit-spring-boot-devmode</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.levigo.jadice.webtoolkit</groupId> -->
+<!-- 			<artifactId>webtoolkit-spring-boot-devmode</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -109,7 +112,7 @@
 					<excludes>
 						<exclude>
 							<groupId>com.google.gwt</groupId>
-							<artifactId>gwt-user</artifactId>
+							<artifactId>gwt-dev</artifactId>
 						</exclude>
 					</excludes>
 				</configuration>
@@ -135,14 +138,12 @@
 				</configuration>
 			</plugin>
 
-			<!-- We use the spotify docker plugin to create a docker image for the 
-				application. The src/main/docker/Dockerfile contains the instructions to 
-				build the image. -->
-			<!-- See plugin docs for info on creating the docker container: https://github.com/spotify/docker-maven-plugin -->
+
+			<!-- We use https://github.com/spotify/dockerfile-maven -->
 			<plugin>
 				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.2.0</version>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>${dockerfile-maven-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>build-image</id>
@@ -153,19 +154,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<imageName>${docker.image.name}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.${project.packaging}</include>
-						</resource>
-					</resources>
-					<imageTags>
-						<imageTag>${project.version}</imageTag>
-					</imageTags>
-					<forceTags>true</forceTags>
+					<repository>${docker.image.name}</repository>
 				</configuration>
 			</plugin>
 
