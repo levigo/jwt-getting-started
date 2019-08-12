@@ -9,7 +9,7 @@ import com.levigo.jadice.web.server.spring.autoconfig.EnableJWTSpringBootApplica
 @SpringBootApplication
 @EnableJWTSpringBootApplication("org.jwt.Application")
 public class MySpringBootApplication extends SpringBootServletInitializer {
-  
+
 	public static void main(String[] args) {
 		SpringApplication.run(MySpringBootApplication.class, args);
 	}

@@ -51,6 +51,8 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+		
+		
 	</dependencies>
 
 	<dependencyManagement>
@@ -105,14 +107,6 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>com.google.gwt</groupId>
-							<artifactId>gwt-user</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 
 			<!-- We use the gwt maven plugin to compile the client side javascript 
