@@ -30,29 +30,18 @@
 	<dependencies>
 		<!-- Dependency versions are managed by parent / imported BOMs -->
 
-		<!-- JWT via Spring-Boot Starter + DevTools -->
+		<!-- JWT via Spring-Boot Starter -->
 		<dependency>
 			<groupId>com.levigo.jadice.webtoolkit</groupId>
 			<artifactId>webtoolkit-spring-boot-starter</artifactId>
 		</dependency>
-
-		<!-- Required for SuperDev mode -->
-		<dependency>
-			<groupId>com.levigo.jadice.webtoolkit</groupId>
-			<artifactId>webtoolkit-spring-boot-devmode</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
 		
+		<!-- JWT + Spring Boot currently only works with servlet 3.0.1 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-		
-		
 	</dependencies>
 
 	<dependencyManagement>
