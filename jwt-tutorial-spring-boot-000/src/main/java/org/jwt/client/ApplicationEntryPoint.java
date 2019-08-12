@@ -14,6 +14,11 @@ import com.levigo.jadice.document.Document;
 import com.levigo.jadice.web.client.reader.Reader;
 import com.levigo.jadice.web.conn.client.ServerConnectionBuilder;
 
+/**
+ * This is the applications {@link EntryPoint} as defined in the
+ * "Application.gwt.xml". It initializes the {@link JadiceWidget} and adds it to
+ * {@link RootPanel}.
+ */
 public class ApplicationEntryPoint implements EntryPoint {
 
   private JadiceWidget jadiceWidget;
@@ -26,28 +31,12 @@ public class ApplicationEntryPoint implements EntryPoint {
     // Adds the jadiceWidget to the "Viewer"-div of the rootpanel (see index.html).
     RootPanel rootPanel = RootPanel.get("Viewer");
     rootPanel.add(jadiceWidget);
-
-    GWT.log("jwt tutorial loaded");
     
     // Finally, load a test document:
     loadDocument("https://www.levigo.de/fileadmin/download/jadicewebtoolkit.pdf");
+    
+    GWT.log("jwt tutorial loaded");
   }
-
-  private void loadDocument(String docURI) {
-		Reader r = new Reader();
-		r.append(new UrlSource(docURI));
-		r.complete(new AsyncCallback<Document>() {
-			@Override
-			public void onFailure(Throwable caught) {
-				caught.printStackTrace();
-			}
-
-			@Override
-			public void onSuccess(Document result) {
-				jadiceWidget.getPageView().setDocument(result);
-			}
-		});
-	}
   
   /**
    * For the tutorial we deactivate websocket communication as not supported by
@@ -62,4 +51,26 @@ public class ApplicationEntryPoint implements EntryPoint {
       Window.alert("Error initializing server-connection.");
     }
   }
+
+  /**
+	 * Loads the document referenced by the passed url.
+	 * 
+	 * @param url
+	 */
+  private void loadDocument(String docURI) {
+		Reader r = new Reader();
+		r.append(new UrlSource(docURI));
+		r.complete(new AsyncCallback<Document>() {
+			
+			@Override
+			public void onSuccess(Document result) {
+				jadiceWidget.getPageView().setDocument(result);
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				caught.printStackTrace();
+			}
+		});
+	}
 }

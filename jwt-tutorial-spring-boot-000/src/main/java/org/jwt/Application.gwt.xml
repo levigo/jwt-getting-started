@@ -6,18 +6,11 @@
 
     <!-- jadice web toolkit -->
     <inherits name="com.levigo.jadice.web.JadiceWebtoolkit"/>
-    <inherits name="com.levigo.jadice.web.Transport"/>
 
 	<!-- The locale configuration with en as default. -->
 	<extend-property name="locale" values="de,en" />
 	<set-property name="locale" value="de,en" />
 	<set-property-fallback name="locale" value="en" />
-
-	<!--  -->
-	<set-configuration-property name="CssResource.style" value="pretty"/>
-    <set-configuration-property name="CssResource.obfuscationPrefix" value="iv"/>
-    <set-configuration-property name="CssResource.enableGss" value="true"/>
-    <set-configuration-property name="CssResource.conversionMode" value="strict"/>
 
 	<!-- Define all subpackages which sources are used in the client. In our case: org.jwt.client -->
 	<source path="client" />
