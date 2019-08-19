@@ -66,11 +66,11 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 	private AbstractBar createToolbar(final Context context) {
 		final HorizontalToolbar toolbar = new HorizontalToolbar();
 
-		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomInAction(new KeyStroke(Keys.PLUS), context), false));
-		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomOutAction(new KeyStroke(Keys.MINUS), context), false));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomInAction(new KeyStroke(Keys.PLUS), context)));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomOutAction(new KeyStroke(Keys.MINUS), context)));
 		toolbar.addSeparator();
-		toolbar.add(new JadiceDefaultButton(DefaultActions.pagePrevAction(new KeyStroke(Keys.LEFT), context), false));
-		toolbar.add(new JadiceDefaultButton(DefaultActions.pageNextAction(new KeyStroke(Keys.RIGHT), context), false));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.pagePrevAction(new KeyStroke(Keys.LEFT), context)));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.pageNextAction(new KeyStroke(Keys.RIGHT), context)));
 
 		return toolbar;
 	}

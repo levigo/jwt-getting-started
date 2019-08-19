@@ -2,16 +2,15 @@ package org.jwt.client;
 
 import java.io.IOException;
 
+import org.jwt.client.api.JadiceApi;
 import org.jwt.client.ui.JadiceWidget;
-import org.jwt.shared.model.UrlSource;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.levigo.jadice.document.Document;
-import com.levigo.jadice.web.client.reader.Reader;
+import com.levigo.jadice.web.client.PageView;
+import com.levigo.jadice.web.client.util.context.Context;
 import com.levigo.jadice.web.conn.client.ServerConnectionBuilder;
 
 /**
@@ -34,8 +33,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 		RootPanel rootPanel = RootPanel.get("Viewer");
 		rootPanel.add(jadiceWidget);
 
-		// finally load a testdocument
-		loadDocument("https://www.levigo.de/fileadmin/download/jadicewebtoolkit.pdf");
+		initJadiceApi();
 
 		GWT.log("jwt tutorial loaded");
 	}
@@ -53,26 +51,10 @@ public class ApplicationEntryPoint implements EntryPoint {
 		}
 	}
 
-	/**
-	 * Loads the document referenced by the passed url.
-	 * 
-	 * @param url
-	 */
-	private void loadDocument(final String url) {
-		Reader r = new Reader();
-		r.append(new UrlSource(url));
-		r.complete(new AsyncCallback<Document>() {
-
-			@Override
-			public void onSuccess(Document doc) {
-				jadiceWidget.getPageView().setDocument(doc);
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				caught.printStackTrace();
-				Window.alert("Cant load document from \"" + url + "\".");
-			}
-		});
+	private void initJadiceApi() {
+		PageView pageView = jadiceWidget.getPageView();
+		JadiceApi jadiceApi = new JadiceApi(pageView);
+		// add the JadiceApi to the context of the JadiceWidget.
+		Context.get(jadiceWidget).add(jadiceApi);
 	}
 }
