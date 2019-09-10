@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>jwt-tutorial-spring-boot-001</artifactId>
-	<name>jwt-tutorial-spring-boot</name>
+	<name>jwt-tutorial-spring-boot-001</name>
 	<url>https://levigo.de/info/x/4pZdBg</url>
 
 	<parent>
