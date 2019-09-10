@@ -3,3 +3,4 @@
 */.tern-project
 .idea/
 **/*.iml
+.springboot-gwt-devmode/
