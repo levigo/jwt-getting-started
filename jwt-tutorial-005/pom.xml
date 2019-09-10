@@ -26,7 +26,6 @@
 
 		<!-- GWT -->
 		<gwt.version>2.8.2</gwt.version>
-		<gwtplugin.version>2.8.2</gwtplugin.version>
 	</properties>
 
 	<dependencies>
