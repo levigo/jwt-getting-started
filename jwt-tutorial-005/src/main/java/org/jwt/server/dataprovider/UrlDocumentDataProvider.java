@@ -34,6 +34,9 @@ public class UrlDocumentDataProvider implements DocumentDataProvider<UrlSource, 
 	@Override
 	public void read(Reader reader, UrlSource source) throws JadiceException, IOException {
 		InputStream documentStream = getResourceStream(source.getUrl());
+		// Use one of the Java 11 features
+		String dummyLog = "it works! ".repeat(3);
+		System.out.println(dummyLog);
 		reader.read(documentStream);
 	}
 

@@ -11,6 +11,9 @@ import com.levigo.jadice.web.server.spring.autoconfig.EnableJWTSpringBootApplica
 @EnableJWTSpringBootApplication("org.jwt.Application")
 public class MySpringBootApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
+		// Use one of the Java 11 features
+		String dummyLog = "it works! ".repeat(3);
+		System.out.println(dummyLog);
 		SpringApplication.run(MySpringBootApplication.class, args);
 	}
 	
