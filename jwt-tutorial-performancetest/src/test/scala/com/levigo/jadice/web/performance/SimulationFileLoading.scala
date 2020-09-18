@@ -3,7 +3,7 @@ import io.gatling.http.Predef._
  
 class SimulationFileLoading extends Simulation {
     val httpProtocol = http
-        .baseURL("http://localhost:8080/jwt-tutorial-003-5.8.0.0")
+        .baseURL("http://localhost:8080/jwt-tutorial-003-5.9.0.0")
   
     val defaultHeader = Map(
         "Accept" -> "*/*",
@@ -16,7 +16,7 @@ class SimulationFileLoading extends Simulation {
         "Origin" -> "http://localhost:8080",
         "Pragma" -> "no-cache",
         "User-Agent" -> "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36",
-        "X-GWT-Module-Base" -> "http://localhost:8080/jwt-tutorial-003-5.8.0.0/imageviewer/",
+        "X-GWT-Module-Base" -> "http://localhost:8080/jwt-tutorial-003-5.9.0.0/imageviewer/",
         "X-GWT-Permutation" -> "79A1155DD3CB7EBBA33EE56F4B55FD77")
          
     val scn = scenario("File loading Scenario")
