@@ -49,7 +49,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- Let's import the Jadice Webtoolkit bill of material. JWT dependency 
+			<!-- Let's import the jadice web toolkit bill of material. JWT dependency
 				versions will be managed via this BOM. -->
 			<dependency>
 				<groupId>com.levigo.jadice.webtoolkit</groupId>

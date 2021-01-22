@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+do<?xml version="1.0"?>
 <project
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
     xmlns="http://maven.apache.org/POM/4.0.0"
@@ -44,25 +44,11 @@
       <groupId>com.levigo.jadice.webtoolkit</groupId>
       <artifactId>webtoolkit-spring-boot-starter</artifactId>
     </dependency>
-
-    <!-- The following two dependencies are not needed for this tutorial,	but were needed at a point in the real
-         jadice webtoolkit repository to enable java 11 compatibility,	so they might be needed in complex integrations
-    -->
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>2.3.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jaxb</groupId>
-      <artifactId>jaxb-runtime</artifactId>
-      <version>2.3.0</version>
-    </dependency>
   </dependencies>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Let's import the Jadice Webtoolkit bill of material. JWT dependency
+      <!-- Let's import the jadice web toolkit bill of material. JWT dependency
         versions will be managed via this BOM. -->
       <dependency>
         <groupId>com.levigo.jadice.webtoolkit</groupId>
