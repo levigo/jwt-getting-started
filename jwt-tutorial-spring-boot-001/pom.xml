@@ -1,4 +1,4 @@
-do<?xml version="1.0"?>
+<?xml version="1.0"?>
 <project
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
     xmlns="http://maven.apache.org/POM/4.0.0"
@@ -11,7 +11,7 @@ do<?xml version="1.0"?>
   <parent>
     <groupId>org.jwt</groupId>
     <artifactId>jwt-tutorial</artifactId>
-    <version>5.10.0.0</version>
+    <version>5.10.0.10</version>
   </parent>
 
   <properties>
@@ -21,7 +21,7 @@ do<?xml version="1.0"?>
     <maven.compiler.target>11</maven.compiler.target>
 
     <!-- levigo dependencies -->
-    <jwt.version>5.10.0.0</jwt.version>
+    <jwt.version>5.10.0.10</jwt.version>
 
     <!-- GWT dependencies -->
     <gwt.version>2.9.0</gwt.version>
