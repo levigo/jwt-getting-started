@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.jwt</groupId>
 		<artifactId>jwt-tutorial</artifactId>
-		<version>5.10.0.10</version>
+		<version>5.10.52.2</version>
 	</parent>
 
 	<properties>
@@ -35,7 +35,7 @@
 			<groupId>com.levigo.jadice.webtoolkit</groupId>
 			<artifactId>webtoolkit-spring-boot-starter</artifactId>
 		</dependency>
-		
+
 		<!-- Required for SuperDev mode -->
 		<dependency>
 			<groupId>com.levigo.jadice.webtoolkit</groupId>
@@ -63,7 +63,7 @@
 
 	<build>
 		<plugins>
-			<!-- We use the assembly plugin to copy the index.html to the 'public' 
+			<!-- We use the assembly plugin to copy the index.html to the 'public'
 				folder -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -86,7 +86,7 @@
 				</executions>
 			</plugin>
 
-			<!-- Use spring boot maven plugin to create an executable JAR with all 
+			<!-- Use spring boot maven plugin to create an executable JAR with all
 				dependencies -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -101,7 +101,7 @@
 				</executions>
 			</plugin>
 
-			<!-- We use the gwt maven plugin to compile the client side javascript 
+			<!-- We use the gwt maven plugin to compile the client side javascript
 				files from java sources -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -121,7 +121,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder 
+			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder
 				which is created by the gwt compiler -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -148,10 +148,10 @@
 			</plugin>
 		</plugins>
 
-		<!-- This section is only needed for Eclipse users to get rid of the errors 
-			in the POM regarding 'plugin execution not covered by lifecycle configuration' 
-			which is thrown by the M2E Plugin for no sensible reason. 
-			
+		<!-- This section is only needed for Eclipse users to get rid of the errors
+			in the POM regarding 'plugin execution not covered by lifecycle configuration'
+			which is thrown by the M2E Plugin for no sensible reason.
+
 			When not using the Eclipse IDE, this section can be ignored -->
 		<pluginManagement>
 			<plugins>

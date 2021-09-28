@@ -3,7 +3,7 @@ import io.gatling.http.Predef._
  
 class SimulationSimple extends Simulation {
   val httpProtocol = http
-    .baseURL("http://localhost:8080/jwt-tutorial-003-5.10.0.10")
+    .baseURL("http://localhost:8080/jwt-tutorial-003-5.10.52.2")
        
   val defaultHeader = Map(
     "Accept" -> "*/*")
