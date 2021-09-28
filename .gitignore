@@ -1,6 +1,17 @@
-/.project
-/.settings/*
-*/.tern-project
-.idea/
+# eclipse project files and directories
+.classpath
+.project
+.settings
+.recommenders
+.metadata/.project
+
+# exclude IntelliJ IDEA files
+.idea
 **/*.iml
+.run
+
+# exclude gwt debug files
 .springboot-gwt-devmode/
+
+# others
+*/.tern-project
