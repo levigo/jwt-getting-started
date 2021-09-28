@@ -1,59 +1,105 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<groupId>org.jwt</groupId>
 	<artifactId>jwt-tutorial-002</artifactId>
 	<version>5.10.52.2</version>
 
 	<description>Getting Started - jadice web toolkit</description>
-	<url>https://levigo.de/info/x/dABbBQ</url>
+	<url>https://levigo.de/info/x/cwGABQ</url>
 
 	<modelVersion>4.0.0</modelVersion>
-	<packaging>war</packaging>
 
 	<properties>
+		<!-- General project settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<!-- levigo -->
+		<!-- levigo dependencies -->
 		<jwt.version>5.10.52.2</jwt.version>
 
-		<!-- GWT -->
+		<!-- GWT dependencies -->
 		<gwt.version>2.9.0</gwt.version>
 	</properties>
 
 	<dependencies>
+		<!-- Dependency versions are managed by parent / imported BOMs -->
 
-		<!-- JWT -->
+		<!-- JWT via Spring-Boot Starter -->
 		<dependency>
 			<groupId>com.levigo.jadice.webtoolkit</groupId>
-			<artifactId>webtoolkit-base</artifactId>
-			<version>${jwt.version}</version>
+			<artifactId>webtoolkit-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- General GWT dependencies -->
+		<!-- Required for debugging purposes (GWT SuperDev mode). Consider removing those in production -->
 		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwt.version}</version>
-			<scope>provided</scope>
+			<groupId>com.levigo.jadice.webtoolkit</groupId>
+			<artifactId>webtoolkit-spring-boot-devmode</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-dev</artifactId>
-			<version>${gwt.version}</version>
-			<scope>provided</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<!-- Let's import the jadice web toolkit bill of material. JWT dependency
+        versions will be managed via this BOM. -->
+			<dependency>
+				<groupId>com.levigo.jadice.webtoolkit</groupId>
+				<artifactId>webtoolkit-spring-boot-bom</artifactId>
+				<version>${jwt.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
+			<!-- We use the assembly plugin to copy the index.html to the 'public'
+        folder -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>assemble</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/all.xml</descriptor>
+							</descriptors>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-			<!-- Configure the gwt-clean-plugin to generate a deployable war -->
+			<!-- Use spring boot maven plugin to create an executable JAR with all
+        dependencies -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.2.13.RELEASE</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- We use the gwt maven plugin to compile the client side javascript
+        files from java sources -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
@@ -63,7 +109,6 @@
 						<goals>
 							<goal>resources</goal>
 							<goal>compile</goal>
-							<goal>test</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -73,10 +118,11 @@
 				</configuration>
 			</plugin>
 
-			<!-- Configure the maven-clean-plugin to delete GWT-temp files at cleanup -->
+			<!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder
+        which is created by the gwt compiler -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>2.4.1</version>
 				<executions>
 					<execution>
 						<phase>clean</phase>
@@ -86,17 +132,11 @@
 						<configuration>
 							<filesets>
 								<fileset>
-									<directory>src/main</directory>
+									<directory>src/main/gwt-unitCache</directory>
 									<includes>
 										<include>**</include>
 									</includes>
-									<excludes>
-										<exclude>java/**</exclude>
-										<exclude>resources/**</exclude>
-										<exclude>**/index.html</exclude>
-										<exclude>**/web.xml</exclude>
-										<exclude>**/.gitignore</exclude>
-									</excludes>
+									<followSymlinks>false</followSymlinks>
 								</fileset>
 							</filesets>
 						</configuration>
@@ -104,5 +144,55 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+		<!-- This section is only needed for Eclipse users to get rid of the errors
+      in the POM regarding 'plugin execution not covered by lifecycle configuration'
+      which is thrown by the M2E Plugin for no sensible reason.
+
+      When not using the Eclipse IDE, this section can be ignored -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>gwt-maven-plugin</artifactId>
+										<versionRange>[2.4.0,)</versionRange>
+										<goals>
+											<goal>resources</goal>
+											<goal>compile</goal>
+											<goal>i18n</goal>
+											<goal>generateAsync</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute/>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-war-plugin</artifactId>
+										<versionRange>[2.1.1,)</versionRange>
+										<goals>
+											<goal>exploded</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
