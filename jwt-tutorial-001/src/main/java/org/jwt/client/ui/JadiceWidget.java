@@ -32,12 +32,7 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 	}
 
 	private Viewer createViewer() {
-		final Viewer viewer = new ViewerBuilder().build();
-		return viewer;
-	}
-
-	public PageView getPageView() {
-		return viewer.getPageView();
+		return new ViewerBuilder().build();
 	}
 
 	@Override
