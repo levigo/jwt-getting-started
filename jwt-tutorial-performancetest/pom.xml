@@ -15,8 +15,8 @@
 		<version>5.10.52.2</version>
 	</parent>
 	<properties>
-		<gatling.version>2.3.1</gatling.version>
-		<gatling-plugin.version>2.2.4</gatling-plugin.version>
+		<gatling.version>3.3.1</gatling.version>
+		<gatling-plugin.version>3.0.5</gatling-plugin.version>
 	</properties>
 
 	<dependencies>

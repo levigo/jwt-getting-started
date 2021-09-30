@@ -1,10 +1,10 @@
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+import io.gatling.http.protocol.HttpProtocolBuilder
 
 
 class SimulationTiles extends Simulation {
-  val httpProtocol = http
-    .baseURL("http://localhost:8080/jwt-tutorial-003-5.10.52.2")
+  val theHttpProtocolBuilder: HttpProtocolBuilder = http.baseUrl("http://localhost:8080/")
        
   val defaultHeader= Map(
     "Accept" -> "*/*",
@@ -52,7 +52,7 @@ class SimulationTiles extends Simulation {
      )
      
     setUp(scn.inject(atOnceUsers(5)))
-    .protocols(httpProtocol)
+    .protocols(theHttpProtocolBuilder)
     .assertions(
       global.responseTime.max.lte(10000)
     )
