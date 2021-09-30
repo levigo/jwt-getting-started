@@ -5,7 +5,7 @@ import com.google.gwt.i18n.client.Messages;
 
 public interface CustomMessages extends Messages {
 
-	public CustomMessages INSTANCE = GWT.create(CustomMessages.class);
+	CustomMessages INSTANCE = GWT.create(CustomMessages.class);
 
 	String openDocument_description();
 
