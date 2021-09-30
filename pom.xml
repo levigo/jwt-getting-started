@@ -18,7 +18,6 @@
 		<module>jwt-tutorial-004</module>
 		<module>jwt-tutorial-005</module>
 		<module>jwt-tutorial-performancetest</module>
-		<module>jwt-tutorial-spring-boot-000</module>
 		<module>jwt-tutorial-spring-boot-001</module>
   </modules>
 </project>
