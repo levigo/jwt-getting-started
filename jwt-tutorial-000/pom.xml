@@ -121,6 +121,7 @@
       <!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder
         which is created by the gwt compiler -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
         <version>2.4.1</version>
         <executions>
@@ -133,6 +134,13 @@
               <filesets>
                 <fileset>
                   <directory>src/main/gwt-unitCache</directory>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                  <followSymlinks>false</followSymlinks>
+                </fileset>
+                <fileset>
+                  <directory>.springboot-gwt-devmode</directory>
                   <includes>
                     <include>**</include>
                   </includes>

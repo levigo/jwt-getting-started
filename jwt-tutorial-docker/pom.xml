@@ -152,6 +152,7 @@
       <!-- On clean, also delete the temporary /src/main/gwt-unit-cache folder
         which is created by the gwt compiler -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
         <version>2.4.1</version>
         <executions>
