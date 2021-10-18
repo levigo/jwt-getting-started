@@ -1,7 +1,7 @@
 package org.jwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 
 /**
  * This is the applications {@link EntryPoint} as defined in the
@@ -11,6 +11,6 @@ public class ApplicationEntryPoint implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		GWT.log("jwt tutorial loaded");
+		Window.alert("jwt tutorial loaded");
 	}
 }
