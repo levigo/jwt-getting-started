@@ -41,12 +41,11 @@ public class ApplicationEntryPoint implements EntryPoint {
 	}
 
 	/**
-	 * For the tutorial we deactivate websocket communication as not supported by
-	 * jetty.
+	 * We force the builder here to longpoll, so we get a deterministic behavior for the performance test tutorial.
 	 */
 	private void initServerConnection() {
 		try {
-			new ServerConnectionBuilder().setWebSocketEnabled(false).build();
+			new ServerConnectionBuilder().setWebSocketEnabled(false).setServerSentEventsEnabled(false).build();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Window.alert("Error initializing server-connection.");

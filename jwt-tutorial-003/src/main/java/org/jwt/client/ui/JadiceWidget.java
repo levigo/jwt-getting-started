@@ -49,8 +49,7 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 	}
 
 	private Viewer createViewer() {
-		final Viewer viewer = new ViewerBuilder().build();
-		return viewer;
+		return new ViewerBuilder().build();
 	}
 
 	private AbstractBar createToolbar(final Context context) {

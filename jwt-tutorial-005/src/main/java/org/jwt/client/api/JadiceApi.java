@@ -10,7 +10,7 @@ import com.levigo.jadice.web.client.reader.Reader;
 
 public class JadiceApi {
 
-	private PageView pageView;
+	private final PageView pageView;
 
 	public JadiceApi(PageView pageView) {
 		this.pageView = pageView;
@@ -19,7 +19,7 @@ public class JadiceApi {
 	/**
 	 * Loads the document referenced by the passed url.
 	 * 
-	 * @param url
+	 * @param url the URL of the document to be loaded
 	 */
 	public void loadDocument(final String url) {
 		Reader r = new Reader();

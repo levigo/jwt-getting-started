@@ -17,14 +17,12 @@ import com.levigo.jadice.web.conn.client.ServerConnectionBuilder;
  */
 public class ApplicationEntryPoint implements EntryPoint {
 
-	private JadiceWidget jadiceWidget;
-
 	@Override
 	public void onModuleLoad() {
 
 		initServerConnection();
 
-		jadiceWidget = new JadiceWidget();
+		JadiceWidget jadiceWidget = new JadiceWidget();
 
 		// Adds the jadiceWidget to the "Viewer"-div of the rootpanel (see index.html).
 		RootPanel rootPanel = RootPanel.get("Viewer");

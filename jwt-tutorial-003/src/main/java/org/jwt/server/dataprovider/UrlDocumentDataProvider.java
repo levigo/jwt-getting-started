@@ -7,6 +7,7 @@ import java.net.URLConnection;
 
 import org.jwt.shared.model.UrlHandle;
 import org.jwt.shared.model.UrlSource;
+import org.springframework.stereotype.Component;
 
 import com.levigo.jadice.document.JadiceException;
 import com.levigo.jadice.document.read.Reader;
@@ -21,6 +22,7 @@ import com.levigo.jadice.web.shared.service.exceptions.RecoverFailedException;
  * In our case we just load a document from an url referenced by
  * {@link UrlSource}.
  */
+@Component
 public class UrlDocumentDataProvider implements DocumentDataProvider<UrlSource, UrlHandle> {
 
 	public UrlDocumentDataProvider() {

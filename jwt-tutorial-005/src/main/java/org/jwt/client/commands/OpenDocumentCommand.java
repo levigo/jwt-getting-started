@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.levigo.jadice.web.client.commands.AbstractContextCommand;
 import com.levigo.jadice.web.client.util.command.Argument;
+import com.levigo.jadice.web.client.util.internal.Console;
 
 /**
  * Shows a dialog where the user can input an url. When pressing ok, we try to
@@ -48,9 +49,7 @@ public class OpenDocumentCommand extends AbstractContextCommand {
 		panel.add(inputBox);
 
 		Button okButton = new Button(CustomMessages.INSTANCE.openDocument_dialog_ok());
-		okButton.addClickHandler(event -> {
-			openUrl(dialog, inputBox);
-		});
+		okButton.addClickHandler(event -> openUrl(dialog, inputBox));
 		panel.add(okButton);
 
 		PopupPanel dialog = new PopupPanel();
@@ -70,8 +69,6 @@ public class OpenDocumentCommand extends AbstractContextCommand {
 	/**
 	 * {@link JadiceApi} is injected by the action and command framework from the
 	 * context.
-	 * 
-	 * @param jadiceApi
 	 */
 	@Argument
 	public void setJadiceApi(JadiceApi jadiceApi) {
