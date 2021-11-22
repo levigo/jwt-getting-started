@@ -6,16 +6,14 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.RequiresResize;
 import com.google.gwt.user.client.ui.Widget;
 import com.levigo.jadice.web.client.PageView;
-import com.levigo.jadice.web.client.ToolManager;
 import com.levigo.jadice.web.client.Viewer;
 import com.levigo.jadice.web.client.ViewerBuilder;
-import com.levigo.jadice.web.client.tool.DefaultToolActivationPolicy;
-import com.levigo.jadice.web.client.tools.HighlightTool;
-import com.levigo.jadice.web.client.tools.MouseWheelScrollTool;
-import com.levigo.jadice.web.client.tools.MouseWheelZoomTool;
-import com.levigo.jadice.web.client.tools.PanForceMouseTool;
-import com.levigo.jadice.web.client.tools.TextSelectionTool;
-import com.levigo.jadice.web.client.tools.ThumbnailTool;
+import com.levigo.jadice.web.client.ui.AbstractBar;
+import com.levigo.jadice.web.client.ui.DefaultActions;
+import com.levigo.jadice.web.client.ui.HorizontalToolbar;
+import com.levigo.jadice.web.client.ui.JadiceDefaultButton;
+import com.levigo.jadice.web.client.util.action.KeyStroke;
+import com.levigo.jadice.web.client.util.action.Keys;
 import com.levigo.jadice.web.client.util.context.Context;
 import com.levigo.jadice.web.client.util.context.Context.Ancestors;
 import com.levigo.jadice.web.client.util.context.Context.Children;
@@ -43,30 +41,27 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		Context context = Context.install(this, Children.ALL, Ancestors.ALL);
 		context.add(viewer.getPageView());
 
-		panel.add(viewer);
+		// create the toolbar and add it to the panel
+		AbstractBar toolbar = createToolbar(context);
+		panel.addNorth(toolbar, toolbar.getStyle().size());
 
-		configureToolManager();
+		panel.add(viewer);
 	}
 
 	private Viewer createViewer() {
-		final Viewer viewer = new ViewerBuilder().build();
-		return viewer;
+		return new ViewerBuilder().build();
 	}
 
-	private void configureToolManager() {
-		ToolManager tm = viewer.getPageView().getToolManager();
+	private AbstractBar createToolbar(final Context context) {
+		final HorizontalToolbar toolbar = new HorizontalToolbar();
 
-		tm.register(PanForceMouseTool.class, true);
+		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomInAction(new KeyStroke(Keys.PLUS), context)));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomOutAction(new KeyStroke(Keys.MINUS), context)));
+		toolbar.addSeparator();
+		toolbar.add(new JadiceDefaultButton(DefaultActions.pagePrevAction(new KeyStroke(Keys.LEFT), context)));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.pageNextAction(new KeyStroke(Keys.RIGHT), context)));
 
-		tm.register(MouseWheelScrollTool.class, true);
-		tm.register(MouseWheelZoomTool.class, true);
-
-		tm.register(ThumbnailTool.class, true);
-
-		tm.register(TextSelectionTool.class, true);
-		tm.register(HighlightTool.class, true);
-
-		tm.setActivationPolicy(new DefaultToolActivationPolicy());
+		return toolbar;
 	}
 
 	public PageView getPageView() {

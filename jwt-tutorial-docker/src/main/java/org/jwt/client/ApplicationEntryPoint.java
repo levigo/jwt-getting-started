@@ -1,9 +1,9 @@
-package org.jwt.client;
+package org.jadice.client;
 
 import java.io.IOException;
 
-import org.jwt.client.ui.JadiceWidget;
-import org.jwt.shared.model.UrlSource;
+import org.jadice.client.ui.JadiceWidget;
+import org.jadice.shared.model.UrlSource;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;

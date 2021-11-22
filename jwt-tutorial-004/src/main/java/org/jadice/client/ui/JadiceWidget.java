@@ -16,6 +16,12 @@ import com.levigo.jadice.web.client.tools.MouseWheelZoomTool;
 import com.levigo.jadice.web.client.tools.PanForceMouseTool;
 import com.levigo.jadice.web.client.tools.TextSelectionTool;
 import com.levigo.jadice.web.client.tools.ThumbnailTool;
+import com.levigo.jadice.web.client.ui.AbstractBar;
+import com.levigo.jadice.web.client.ui.DefaultActions;
+import com.levigo.jadice.web.client.ui.HorizontalToolbar;
+import com.levigo.jadice.web.client.ui.JadiceDefaultButton;
+import com.levigo.jadice.web.client.util.action.KeyStroke;
+import com.levigo.jadice.web.client.util.action.Keys;
 import com.levigo.jadice.web.client.util.context.Context;
 import com.levigo.jadice.web.client.util.context.Context.Ancestors;
 import com.levigo.jadice.web.client.util.context.Context.Children;
@@ -43,14 +49,29 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		Context context = Context.install(this, Children.ALL, Ancestors.ALL);
 		context.add(viewer.getPageView());
 
+		// create the toolbar and add it to the panel
+		AbstractBar toolbar = createToolbar(context);
+		panel.addNorth(toolbar, toolbar.getStyle().size());
+
 		panel.add(viewer);
 
 		configureToolManager();
 	}
 
 	private Viewer createViewer() {
-		final Viewer viewer = new ViewerBuilder().build();
-		return viewer;
+		return new ViewerBuilder().build();
+	}
+
+	private AbstractBar createToolbar(final Context context) {
+		final HorizontalToolbar toolbar = new HorizontalToolbar();
+
+		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomInAction(new KeyStroke(Keys.PLUS), context)));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.zoomOutAction(new KeyStroke(Keys.MINUS), context)));
+		toolbar.addSeparator();
+		toolbar.add(new JadiceDefaultButton(DefaultActions.pagePrevAction(new KeyStroke(Keys.LEFT), context)));
+		toolbar.add(new JadiceDefaultButton(DefaultActions.pageNextAction(new KeyStroke(Keys.RIGHT), context)));
+
+		return toolbar;
 	}
 
 	private void configureToolManager() {
@@ -66,6 +87,8 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		tm.register(TextSelectionTool.class, true);
 		tm.register(HighlightTool.class, true);
 
+		// DefaultToolActivationPolicy automatically activates tools like the
+		// TextSelectionTool and PanForceMouseTool if another tool is deactivated
 		tm.setActivationPolicy(new DefaultToolActivationPolicy());
 	}
 
