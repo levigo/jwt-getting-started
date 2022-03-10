@@ -56,7 +56,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 	/**
 	 * Loads the document referenced by the passed url.
 	 * 
-	 * @param url
+	 * @param url pointing to a document, in this case a publicly available PDF
 	 */
 	private void loadDocument(final String url) {
 		Reader r = new Reader();
