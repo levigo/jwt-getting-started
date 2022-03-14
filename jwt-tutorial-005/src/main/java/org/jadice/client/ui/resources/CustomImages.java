@@ -8,6 +8,6 @@ public interface CustomImages extends ClientBundle {
 
 	CustomImages INSTANCE = GWT.create(CustomImages.class);
 
-	@Source("org/jwt/client/ui/resources/open.png")
+	@Source("org/jadice/client/ui/resources/open.png")
 	ImageResource open();
 }
