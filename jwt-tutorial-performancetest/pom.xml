@@ -12,7 +12,7 @@
 	<parent>
 		<artifactId>jwt-tutorial</artifactId>
 		<groupId>org.jwt</groupId>
-		<version>5.11.1.3</version>
+		<version>5.11.3.12</version>
 	</parent>
 	<properties>
 		<gatling.version>3.3.1</gatling.version>
