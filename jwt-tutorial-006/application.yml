@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+#
+# jadice web toolkit configuration
+#
+webtoolkit:
+  
+  # Specify annotation profiles 
+  annotationProfiles: /annotation-profile.xml
+
+  # Specify default annotation profile (The value must match annotation-profile name in annotation-profile-p8.xml)
+  defaultAnnotationProfile: Tutorial-Annotations
