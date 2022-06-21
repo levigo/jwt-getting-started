@@ -4,7 +4,7 @@
 
   <groupId>org.jwt</groupId>
   <artifactId>jwt-tutorial-005</artifactId>
-  <version>5.11.3.12</version>
+  <version>5.11.9.2</version>
 
   <description>Getting Started - jadice web toolkit</description>
   <url>https://levigo.de/info/x/cwGABQ</url>
@@ -18,7 +18,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
 
     <!-- levigo dependencies -->
-    <jwt.version>5.11.3.12</jwt.version>
+    <jwt.version>5.11.9.2</jwt.version>
 
     <!-- GWT dependencies -->
     <gwt.version>2.9.0</gwt.version>
@@ -35,12 +35,21 @@
 
     <!-- Required for debugging purposes (GWT SuperDev mode). Consider removing those in production -->
     <dependency>
-      <groupId>com.levigo.jadice.webtoolkit</groupId>
-      <artifactId>webtoolkit-spring-boot-devmode</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 

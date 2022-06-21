@@ -1,0 +1,93 @@
+server:
+  servlet:
+    context-path: "/"
+
+#
+# Actuator configuration for application monitoring: web exposure, partly via jolokia
+#
+# (Readiness and liveness probes for container: /actuator/health/ping and /actuator/health)
+#
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, info, prometheus
+        # uncomment the following line for detailed cache info (created via CacheInfoResource)
+        # include: health, metrics, info, prometheus, jwtcachedetailed
+    jmx:
+      exposure:
+        include: health, metrics, info
+
+  metrics:
+    enable:
+      all: true
+    export:
+      jmx:
+        enabled: true
+      prometheus:
+        enabled: true
+
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+
+# publish metrics via JMX
+spring:
+  jmx:
+    enabled: true
+
+# log configuration
+logging:
+  level:
+    root: INFO
+    com.levigo.jadice.document.ProductInformation: FATAL
+    com.levigo.jadice.document: INFO
+    com.levigo.jadice.format.pdf: FATAL
+    com.levigo.jadice.web.server: WARN
+    com.levigo.jadice.web.server.internal.DocumentService: INFO
+    com.levigo.jadice.web.server.internal.GitInfo: INFO
+    com.levigo.jadice.web.server.internal.TileRenderer: WARN
+    com.levigo.jadice.printer.AbstractPrinter: INFO
+  file:
+    name: c:/temp/tut5.log
+  pattern:
+    console: "%d %-5level [%thread] [clientId:%X{jwt.clientId}] [docId:%X{jwt.docIdentifier}]  %logger: %msg%n"
+    file: "%d %-5level [%thread] [clientId:%X{clientId}] [docId:%X{jwt.docIdentifier}] %logger: %msg%n"   
+#    rolling-file-name: use default "basicviewer.log.2021-09-23.0.gz"
+
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 50
+
+# Webtoolkit "standard" configuration options that can also be done programmatically via ConfigurationManager.
+webtoolkit:
+
+  # Enable caching of tiles
+  tileCachingEnabled: false
+
+  # Choose a compression type
+  tileCompressionType: PNGJ_BEST_COMPRESSION
+
+
+  # Configure network settings
+  networkConfiguration:
+
+    # Set the timeout of a long poll query to 5 minutes
+    # note: longer intervals reduce the traffic overhead
+    longPollTimeout: 5m
+
+    # Set the duration the server aggregates answers for a client in order to send them in a batch to 20 milliseconds
+    # note: this window should be small otherwise a delay is recognicable
+    responseAggregationWindow: 20ms
+
+    # Set the timeout of an idle client session to 30 seconds
+    sessionTimeout: 30s
+
+    # Set the interval at wich the server sents keep alive message to the client to 30 seconds
+    keepAliveInterval: 33s
+
+
+  tile-renderer-max-queue-size-active: 500
+  tile-renderer-max-pending-requests-size: 250
