@@ -28,21 +28,43 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>io.gatling</groupId>
-				<artifactId>gatling-maven-plugin</artifactId>
-				<version>${gatling-plugin.version}</version>
-				<configuration>
-					<configFolder>${project.basedir}/src/test/resources</configFolder>
-					<dataFolder>${project.basedir}/src/test/resources/data</dataFolder>
-					<bodiesFolder>${project.basedir}/src/test/resources/bodies</bodiesFolder>
-					<simulationsFolder>${project.basedir}/src/test/scala</simulationsFolder>
-					<resultsFolder>${project.build.directory}/reports/gatling</resultsFolder>
-					<runMultipleSimulations>true</runMultipleSimulations>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<profiles>
+		<profile>
+			<id>webtoolkit-jmeter</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<executions>
+							<!-- Generate JMeter configuration -->
+							<execution>
+								<id>configuration</id>
+								<goals>
+									<goal>configure</goal>
+								</goals>
+							</execution>
+							<!-- Run JMeter tests -->
+							<execution>
+								<id>jmeter-tests</id>
+								<goals>
+									<goal>jmeter</goal>
+								</goals>
+							</execution>
+							<!-- Fail build on errors in test -->
+							<execution>
+								<id>jmeter-check-results</id>
+								<goals>
+									<goal>results</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
