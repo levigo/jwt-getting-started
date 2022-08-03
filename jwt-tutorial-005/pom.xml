@@ -34,10 +34,11 @@
     </dependency>
 
     <!-- Required for debugging purposes (GWT SuperDev mode). Consider removing those in production -->
-    <dependency>
-      <groupId>com.levigo.jadice.webtoolkit</groupId>
-      <artifactId>webtoolkit-spring-boot-devmode</artifactId>
-    </dependency>
+    <!-- in any case, don't use the spring-boot-devmode if you want to do the load tests -->
+<!--    <dependency>-->
+<!--      <groupId>com.levigo.jadice.webtoolkit</groupId>-->
+<!--      <artifactId>webtoolkit-spring-boot-devmode</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
