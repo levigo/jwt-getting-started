@@ -35,9 +35,15 @@
 
     <!-- Required for debugging purposes (GWT SuperDev mode). Consider removing those in production -->
     <dependency>
+      <groupId>com.levigo.jadice.webtoolkit</groupId>
+      <artifactId>webtoolkit-spring-boot-devmode</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
     </dependency>
+
+    <!-- Required for exposing the metrics (only needed for the performance test tutorial, which is not part of tutorial 005 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
