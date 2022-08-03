@@ -73,9 +73,9 @@
           <stringProp name="TestPlan.comments">pre processor - We really need a new UUID for each simulated client. Otherwise the server will not run with full speed, as we throttle down clients that generate too much load.</stringProp>
         </UserParameters>
         <hashTree/>
-        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters: document UUID" enabled="true">
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters: pageSegment UUID" enabled="true">
           <collectionProp name="UserParameters.names">
-            <stringProp name="-814940266">documentId</stringProp>
+            <stringProp name="-1559505441">pageSegmentId</stringProp>
           </collectionProp>
           <collectionProp name="UserParameters.thread_values">
             <collectionProp name="681405977">
@@ -83,7 +83,7 @@
             </collectionProp>
           </collectionProp>
           <boolProp name="UserParameters.per_iteration">false</boolProp>
-          <stringProp name="TestPlan.comments">generate a new UUID for each tile</stringProp>
+          <stringProp name="TestPlan.comments">generate a new UUID for each pageSegment</stringProp>
         </UserParameters>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Connect to page" enabled="true">
@@ -142,7 +142,7 @@
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/jwt/tile?c=${clientId}&amp;v=18ae2e54-4226-d5b3-4226-d5b34226d5b3&amp;r=7*0*12**AD8C9D096FC9726CE763CB7DF9849DE9*com.levigo.jadice.web.shared.model.internal.FlattenedRenderSpecificationData%2F4206259206*com.levigo.jadice.web.shared.model.settings.AnnotationRenderSettings%2F3358781670*%5BI%2F2970817851*%5BLcom.levigo.jadice.web.shared.model.PageSegmentHandle%3B%2F270004123*org.jadice.shared.model.UrlHandle%2F309448720*file%3A%2F%2F%2FC%3A%2Ftemp%2Ftest.pdf*document*${documentId}*%5BLjava.lang.String%3B%2F2600011424*ROT_000*1*2*3*4*0*0*96*5*4*0*0*255*255*6*1*7*8*9*0*10*11*0*1122*793*0*0*12*1*</stringProp>
+          <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/jwt/tile?c=${clientId}&amp;v=18ae2e54-4226-d5b3-4226-d5b34226d5b3&amp;r=7*0*12**AD8C9D096FC9726CE763CB7DF9849DE9*com.levigo.jadice.web.shared.model.internal.FlattenedRenderSpecificationData%2F4206259206*com.levigo.jadice.web.shared.model.settings.AnnotationRenderSettings%2F3358781670*%5BI%2F2970817851*%5BLcom.levigo.jadice.web.shared.model.PageSegmentHandle%3B%2F270004123*org.jadice.shared.model.UrlHandle%2F309448720*file%3A%2F%2F%2FC%3A%2Ftemp%2Ftest.pdf*document*${pageSegmentId}*%5BLjava.lang.String%3B%2F2600011424*ROT_000*1*2*3*4*0*0*96*5*4*0*0*255*255*6*1*7*8*9*0*10*11*0*1122*793*0*0*12*1*</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -167,7 +167,7 @@
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/jwt/tile?c=${clientId}&amp;v=18ae2e54-4226-d5b3-4226-d5b34226d5b3&amp;r=7*0*12**AD8C9D096FC9726CE763CB7DF9849DE9*com.levigo.jadice.web.shared.model.internal.FlattenedRenderSpecificationData%2F4206259206*com.levigo.jadice.web.shared.model.settings.AnnotationRenderSettings%2F3358781670*%5BI%2F2970817851*%5BLcom.levigo.jadice.web.shared.model.PageSegmentHandle%3B%2F270004123*org.jadice.shared.model.UrlHandle%2F309448720*file%3A%2F%2F%2FC%3A%2Ftemp%2Ftest.pdf*document*${documentId}*%5BLjava.lang.String%3B%2F2600011424*ROT_000*1*2*3*4*0*0*96*5*4*0*0*255*255*6*1*7*8*9*1*10*11*0*1247*881*0*0*12*1.1111*</stringProp>
+          <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/jwt/tile?c=${clientId}&amp;v=18ae2e54-4226-d5b3-4226-d5b34226d5b3&amp;r=7*0*12**AD8C9D096FC9726CE763CB7DF9849DE9*com.levigo.jadice.web.shared.model.internal.FlattenedRenderSpecificationData%2F4206259206*com.levigo.jadice.web.shared.model.settings.AnnotationRenderSettings%2F3358781670*%5BI%2F2970817851*%5BLcom.levigo.jadice.web.shared.model.PageSegmentHandle%3B%2F270004123*org.jadice.shared.model.UrlHandle%2F309448720*file%3A%2F%2F%2FC%3A%2Ftemp%2Ftest.pdf*document*${pageSegmentId}*%5BLjava.lang.String%3B%2F2600011424*ROT_000*1*2*3*4*0*0*96*5*4*0*0*255*255*6*1*7*8*9*1*10*11*0*1247*881*0*0*12*1.1111*</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -202,7 +202,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/jwt/tile?c=${clientId}&amp;v=18ae2e54-4226-d5b3-4226-d5b34226d5b3&amp;r=7*0*12**AD8C9D096FC9726CE763CB7DF9849DE9*com.levigo.jadice.web.shared.model.internal.FlattenedRenderSpecificationData%2F4206259206*com.levigo.jadice.web.shared.model.settings.AnnotationRenderSettings%2F3358781670*%5BI%2F2970817851*%5BLcom.levigo.jadice.web.shared.model.PageSegmentHandle%3B%2F270004123*org.jadice.shared.model.UrlHandle%2F309448720*file%3A%2F%2F%2FC%3A%2Ftemp%2Ftest.pdf*document*${documentId}*%5BLjava.lang.String%3B%2F2600011424*ROT_000*1*2*3*4*0*0*96*5*4*0*0*255*255*6*1*7*8*9*${pageCounter}*10*11*0*1122*793*0*0*12*1*</stringProp>
+            <stringProp name="HTTPSampler.path">http://127.0.0.1:8080/jwt/tile?c=${clientId}&amp;v=18ae2e54-4226-d5b3-4226-d5b34226d5b3&amp;r=7*0*12**AD8C9D096FC9726CE763CB7DF9849DE9*com.levigo.jadice.web.shared.model.internal.FlattenedRenderSpecificationData%2F4206259206*com.levigo.jadice.web.shared.model.settings.AnnotationRenderSettings%2F3358781670*%5BI%2F2970817851*%5BLcom.levigo.jadice.web.shared.model.PageSegmentHandle%3B%2F270004123*org.jadice.shared.model.UrlHandle%2F309448720*file%3A%2F%2F%2FC%3A%2Ftemp%2Ftest.pdf*document*${pageSegmentId}*%5BLjava.lang.String%3B%2F2600011424*ROT_000*1*2*3*4*0*0*96*5*4*0*0*255*255*6*1*7*8*9*${pageCounter}*10*11*0*1122*793*0*0*12*1*</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
