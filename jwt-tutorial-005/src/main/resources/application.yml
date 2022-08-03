@@ -14,16 +14,11 @@ management:
         include: health, metrics, info, prometheus
         # uncomment the following line for detailed cache info (created via CacheInfoResource)
         # include: health, metrics, info, prometheus, jwtcachedetailed
-    jmx:
-      exposure:
-        include: health, metrics, info
 
   metrics:
     enable:
       all: true
     export:
-      jmx:
-        enabled: true
       prometheus:
         enabled: true
 
@@ -31,11 +26,6 @@ management:
     health:
       show-components: always
       show-details: always
-
-# publish metrics via JMX
-spring:
-  jmx:
-    enabled: true
 
 # log configuration
 logging:
