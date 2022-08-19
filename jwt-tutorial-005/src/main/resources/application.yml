@@ -40,7 +40,7 @@ logging:
     com.levigo.jadice.web.server.internal.TileRenderer: WARN
     com.levigo.jadice.printer.AbstractPrinter: INFO
   file:
-    name: c:/temp/tut5.log
+    name: ${java.io.tmpdir}/tut5.log
   pattern:
     console: "%d %-5level [%thread] [clientId:%X{jwt.clientId}] [docId:%X{jwt.docIdentifier}]  %logger: %msg%n"
     file: "%d %-5level [%thread] [clientId:%X{clientId}] [docId:%X{jwt.docIdentifier}] %logger: %msg%n"   
