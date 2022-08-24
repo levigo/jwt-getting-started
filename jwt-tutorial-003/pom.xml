@@ -4,7 +4,7 @@
 
   <groupId>org.jwt</groupId>
   <artifactId>jwt-tutorial-003</artifactId>
-  <version>5.11.1.3</version>
+  <version>5.11.17.4</version>
 
   <description>Getting Started - jadice web toolkit</description>
   <url>https://levigo.de/info/x/cwGABQ</url>
@@ -18,7 +18,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
 
     <!-- levigo dependencies -->
-    <jwt.version>5.11.1.3</jwt.version>
+    <jwt.version>5.11.17.4</jwt.version>
 
     <!-- GWT dependencies -->
     <gwt.version>2.9.0</gwt.version>
