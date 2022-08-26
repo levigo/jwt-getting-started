@@ -16,21 +16,21 @@
    1. **docker-compose up -d**
 
 #### configuring grafana: data source
-5. visit **localhost:3000**
-6. login with **admin** for both user and password
-7. create a data source at **http://127.0.0.1:3000/datasources**
-8. type: **Prometheus**
-9. ***Important!*** use **"Prometheus"** as name, because the dashboard imported in the next steps
+1. visit **localhost:3000**
+2. login with **admin** for both user and password
+3. create a data source at **http://127.0.0.1:3000/datasources**
+4. type: **Prometheus**
+5. ***Important!*** use **"Prometheus"** as name, because the dashboard imported in the next steps
    expects exactly this name
-10. set the *URL*: it **must** evaluate to **http://host.docker.internal:9090**
-11. click **Save & test** -> a green checkmark with the message "Data source is working" should appear.
-12. ![data source setup](datasource.png)
+6. set the *URL*: it **must** evaluate to **http://host.docker.internal:9090**
+7. click **Save & test** -> a green checkmark with the message "Data source is working" should appear.
+8. ![data source setup](datasource.png)
 
 #### configuring grafana: dashboard
-11. go to **http://127.0.0.1:3000/dashboards**
-12. click **import**
-13. click **Upload JSON file** and use the json file in this directory:
+1. go to **http://127.0.0.1:3000/dashboards**
+2. click **import**
+3. click **Upload JSON file** and use the json file in this directory:
     1. **src/test/resources/jadice web toolkit dashboard-1659536713449.json**
-14. You should be able to see 4 metrics now in the dashboard
-15. ![Dashboard](dashboard.png)
+4. You should be able to see 4 metrics now in the dashboard
+5. ![Dashboard](dashboard.png)
 
