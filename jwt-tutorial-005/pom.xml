@@ -33,12 +33,7 @@
       <artifactId>webtoolkit-spring-boot-starter</artifactId>
     </dependency>
 
-    <!-- Required for debugging purposes (GWT SuperDev mode). Consider removing those in production -->
-    <!-- in any case, don't use the spring-boot-devmode if you want to do the load tests -->
-<!--    <dependency>-->
-<!--      <groupId>com.levigo.jadice.webtoolkit</groupId>-->
-<!--      <artifactId>webtoolkit-spring-boot-devmode</artifactId>-->
-<!--    </dependency>-->
+    <!-- Required for debugging purposes. Consider removing those in production -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -66,7 +61,7 @@
         versions will be managed via this BOM. -->
       <dependency>
         <groupId>com.levigo.jadice.webtoolkit</groupId>
-        <artifactId>webtoolkit-spring-boot-bom</artifactId>
+        <artifactId>webtoolkit-bom</artifactId>
         <version>${jwt.version}</version>
         <scope>import</scope>
         <type>pom</type>

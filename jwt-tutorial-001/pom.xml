@@ -46,7 +46,7 @@
         versions will be managed via this BOM. -->
       <dependency>
         <groupId>com.levigo.jadice.webtoolkit</groupId>
-        <artifactId>webtoolkit-spring-boot-bom</artifactId>
+        <artifactId>webtoolkit-bom</artifactId>
         <version>${jwt.version}</version>
         <scope>import</scope>
         <type>pom</type>
