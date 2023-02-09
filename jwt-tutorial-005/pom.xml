@@ -4,7 +4,7 @@
 
   <groupId>org.jwt</groupId>
   <artifactId>jwt-tutorial-005</artifactId>
-  <version>5.11.17.4</version>
+  <version>5.12.1.12</version>
 
   <description>Getting Started - jadice web toolkit</description>
   <url>https://levigo.de/info/x/cwGABQ</url>
@@ -14,14 +14,14 @@
   <properties>
     <!-- General project settings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
 
     <!-- levigo dependencies -->
-    <jwt.version>5.11.17.4</jwt.version>
+    <jwt.version>5.12.1.14</jwt.version>
 
     <!-- GWT dependencies -->
-    <gwt.version>2.9.0</gwt.version>
+    <gwt.version>2.10.0</gwt.version>
   </properties>
 
   <dependencies>
@@ -33,12 +33,7 @@
       <artifactId>webtoolkit-spring-boot-starter</artifactId>
     </dependency>
 
-    <!-- Required for debugging purposes (GWT SuperDev mode). Consider removing those in production -->
-    <!-- in any case, don't use the spring-boot-devmode if you want to do the load tests -->
-<!--    <dependency>-->
-<!--      <groupId>com.levigo.jadice.webtoolkit</groupId>-->
-<!--      <artifactId>webtoolkit-spring-boot-devmode</artifactId>-->
-<!--    </dependency>-->
+    <!-- Required for debugging purposes. Consider removing those in production -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -66,7 +61,7 @@
         versions will be managed via this BOM. -->
       <dependency>
         <groupId>com.levigo.jadice.webtoolkit</groupId>
-        <artifactId>webtoolkit-spring-boot-bom</artifactId>
+        <artifactId>webtoolkit-bom</artifactId>
         <version>${jwt.version}</version>
         <scope>import</scope>
         <type>pom</type>
@@ -104,7 +99,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>2.2.13.RELEASE</version>
+        <version>3.0.2</version>
         <executions>
           <execution>
             <goals>
@@ -131,6 +126,7 @@
         <configuration>
           <failOnError>true</failOnError>
           <inplace>true</inplace>
+          <sourceLevel>11</sourceLevel>
         </configuration>
       </plugin>
 
