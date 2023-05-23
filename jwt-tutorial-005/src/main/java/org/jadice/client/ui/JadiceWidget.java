@@ -49,7 +49,7 @@ public class JadiceWidget implements IsWidget, RequiresResize {
 		panel.setHeight("100%");
 
 		// initialize the context and register the PageView
-		Context context = Context.install(this, Children.ALL, Ancestors.ALL);
+		Context context = Context.install(panel, Children.ALL, Ancestors.ALL);
 		context.add(viewer.getPageView());
 
 		// create the toolbar and add it to the panel
