@@ -18,6 +18,7 @@
     <module>jwt-tutorial-003</module>
     <module>jwt-tutorial-004</module>
     <module>jwt-tutorial-005</module>
+    <module>jwt-tutorial-006</module>
     <module>jwt-tutorial-docker</module>
     <module>jwt-tutorial-performancetest</module>
   </modules>
