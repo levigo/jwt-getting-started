@@ -21,7 +21,7 @@
     <jwt.version>5.11.26.14</jwt.version>
 
     <!-- GWT dependencies -->
-    <gwt.version>2.9.0</gwt.version>
+    <gwt.version>2.10.0</gwt.version>
   </properties>
 
   <dependencies>
